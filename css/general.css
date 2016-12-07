@@ -1,0 +1,157 @@
+*{
+    margin: 0;
+    padding:0;
+}
+
+body{
+    font-family: Open sans, Arial, sans-serif;
+    overflow-x: hidden; /* This is so it is hidden usually. */
+    width: 100%;
+}
+
+/*
+::-webkit-scrollbar {
+    display: none;
+}
+*/
+
+h1, h2, h3, p{
+    font-family: 'Indie Flower', cursive;
+    font-weight: bold;
+    color: #2C3E50;
+    text-decoration: none;
+}
+
+h1{
+    font-size: 50px;
+}
+
+p{
+    font-size: 20px;
+    word-wrap: break-word;
+}
+
+.error_message{
+    color: red;
+    margin-top: 30px;
+    margin-left: 10px;
+}
+
+.success_message{
+    color: #80c6fe;
+    margin-top: 30px;
+    margin-left: 10px;
+}
+
+#send_email_info{
+  font-size: 10px;
+  margin-left: 16px;
+  color: blue;
+}
+
+nav{
+    /* Will come out 200px and postioned fixed. */
+    position: fixed;
+    z-index: 1000; /* So it will always be above all the content. */
+    top:0;
+    bottom: 0;
+    width: 200px;
+    background-color: #025497;
+    transform: translate3d(-200px, 0, 0); /* Starts off at -200px x value so we can't see it. Y is 0 and z is also 0.*/
+    trasition: transform 0.4s ease; /* ease in transform property over 0.4s */
+
+}
+
+.active-nav nav{
+    transform: translate3d(0, 0, 0); /* if nav is active it will translate back to it's original position. */
+}
+
+nav ul{
+    list-style: none;
+    margin-top: 100px;
+}
+
+nav ul li p{
+    text-decoration: none;
+    display: block;
+    text-align: center;
+    color: #fff;
+    padding: 10px 0;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.nav-toggle-btn{
+    display: block;
+    position: absolute;
+    left: 200px;
+    width: 40px;
+    height: 40px;
+    background-color: grey;
+}
+
+.nav_icon_image{
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+}
+
+.content{
+    width: 100%;
+    margin: 0;
+    padding-top: 50px;
+    text-align: center;
+    transition: transform 0.4s ease; /* it will ease out at the same speed as nav */
+}
+
+.active-nav .content{
+    transform: translate3d(200px, 0, 0); /* both transform together */
+}
+
+.selected_icon{
+    background-color: #02467e;
+}
+
+/* DROPDOWN MENU -->
+/* Dropdown Button */
+.dropbtn {
+    background-color: #025497;
+    color: white;
+    padding: 16px;
+    font-size: 20px;
+    border: none;
+    cursor: pointer;
+    margin-left: 50px;
+    font-family: 'Indie Flower', cursive;
+    font-weight: bold;
+}
+
+
+/* The container <div> - needed to position the dropdown content */
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+/* Dropdown Content (Hidden by Default) */
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #80c6fe;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+}
+
+/* Links inside the dropdown */
+.dropdown-content a {
+    color: white;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+/* Change color of dropdown links on hover */
+.dropdown-content a:hover {background-color: #9ad1fe}
+
+/* Show the dropdown menu (use JS to add this class to the .dropdown-content container when the user clicks on the dropdown button) */
+.show {display:block;}

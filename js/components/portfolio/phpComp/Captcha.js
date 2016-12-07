@@ -1,0 +1,280 @@
+import React from 'react'
+
+export default class Captcha extends React.Component{
+
+  render(){
+    return(
+      <div class="portfolio_block_wrapper">
+          <div class="portfolio_block">
+            <div className="javascriptSummary">
+              <div className="portfolio_block_image_summary_wrapper">
+                <img src="../../../resources/images/projects/captcha/checkBtnInputWrongNumber.png" className="portfolio_block_image_summary" alt="capthca wrong input image"/>
+              </div>
+              <br /><br />
+
+              <p>
+                A CAPTCHA (Completely Automated Public Turing to tell Computers and Humans Apart) is type of challenge
+                response test used to test whether the user is human or not. It is a very useful piece of technology and
+                is widely used today. It works by putting a number, phrase, or combination in an image that has been
+                created to be only readable by humans and not by bots. Recently, other forms are becoming more popular
+                such as selecting only pictures with a ghost in it as Snapchat implemented.
+              </p>
+
+              <br /><br />
+
+              <p>
+                Captchas are used in a wide variety of applications such as preventing comment spam on blogs, protecting
+                registration, and online polls. Bots find It difficult to read distorted text or scan images so by implementing
+                a captcha test where ever you wish to protect from this you can secure your application.
+              </p>
+
+              <br /><br />
+              <p>
+                Source Code: <a href="">GitHub</a>
+              </p>
+
+              <br /><br />
+
+              <p>
+                To find the client side JavaScript for this code there is two versions a jQuery and a ES6 prototypal
+                version. You can find them in the portfolio JavaScript page or by clicking <a href="http://ocwebtech.com/portfolio/javascript?_k=6mghvr">here</a>.
+              </p>
+
+              <br /><br />
+
+              <p>
+                For this project two php files are needed. One to handle the Ajax requests by the client and a second
+                file to create the captcha image that will be used by the client. To further separate concerns a third
+                file could be made to split the code to handle the Ajax requests and in the other file the functions
+                for generating and checking the captcha. However, for simplicity only two files will be used. So
+                let’s start by working backwards and looking at the file to create the captcha image.
+              </p>
+
+              <br /><br />
+
+              <div className="codeBlock">
+                <pre>
+{`
+  <?php
+  session_start();
+
+  $name = 'captcha';
+
+  //set content as image
+  header('Content-type: image/jpeg');
+
+  //get session variable
+  $text = $_SESSION[$name];
+
+  //set image properties
+  $font_size = 30;
+
+  $image_width = 110;
+  $image_height= 40;
+
+  //create image
+  $image = imagecreate($image_width, $image_height);
+  imagecolorallocate($image, 255, 255, 255);
+
+  //set text color
+  $text_color = imagecolorallocate($image, 0, 0, 0);
+
+  //set image lines
+  for($x=1; $x<=30; $x++){
+      $x1 = rand(1, 100);
+      $y1 = rand(1, 100);
+      $x2 = rand(1, 100);
+      $y2 = rand(1, 100);
+
+      imageline($image, $x1, $y1, $x2, $y2, $text_color);
+  }
+
+
+  //set image text
+  imagettftext($image, $font_size, 0 , 15, 30, $text_color, 'captchaFont.ttf', $text);
+
+  //create jpeg
+  imagejpeg($image);
+
+  //free up memory
+  imagedestroy($image);
+
+
+  ?>
+  `}
+                </pre>
+              </div>
+
+              <br /><br />
+
+              <p>
+                The first and most important action that occurs here is session_start(). This creates or resumes a session and
+                if does not occur any session data required by our code will not be available. This is really important as it
+                can be difficult to locate with a large application where the session was not started. When this is called PHP
+                will open and read any existing session data and will automatically populate the super global $_SESSION.
+              </p>
+
+              <br /><br />
+
+              <p>
+                The name variable is not actually needed here and we could of just added it inside $_SESSION[] but this application
+                was built with the intention of being able to be reused by other developers so for readability and in the event
+                the developer wanted to change the name of the session it would be easier to locate. Next we need to change the
+                type of content to a jpeg image. One thing to note here is that the header must be called before any output is
+                sent. This is a common problem that often occurs when developers use requires or includes getting external code.
+              </p>
+
+              <br /><br />
+
+              <p>
+                When an Ajax request gets sent we create a new session variable with the name captcha (we will look at this in
+                  more detail soon). We take this value and assign it to the text variable. This is the number that will be
+                  distorted before being outputted as an image to be used in the captcha test. Next we create image property
+                  variables and assign them values. Again here we could of just added these in directly into the imagecreate()
+                  {`function`} but to aid readability variables with descriptive names are given. The imagecreate()
+                  {`function`} returns an image identifier representing blank image of the size we specified in our variables.
+                  (As of November, 15th, 2016 the php documentation recommends using the imagecreatetruecolor() {`function`} so the
+                  image processing occurs on the highest quality image possible. However, imagecreate() still works fine.)  Next
+                  we need to pass our image into the imagecolorallocate() {`function`}. This allocates a color to the image an takes
+                  4 arguments the image to allocate color to along with a rbg value. The first call to imagecolorallocate()
+                  fills the background colour when using imagecreate().
+              </p>
+
+              <br /><br />
+
+              <p>
+                Next we create the color for the text. We create a loop that calls the imageline() {`function`} which draws a line
+                between two given points that we have set to be random. Now we need to add our text to the image so we use the
+                imagegettext {`function`} which takes arguments of the image, font size, angle, coordinates of x and y to determine
+                roughly the basepoint of the left character in the text, colour, font file, and the text to display. Next we
+                call the imagejpeg() {`function`} which creates a jpeg file from the given image. This has two other optional
+                argument that we didn’t give but are worth noting: the to argument which specifies a path to save the file
+                to and the quality argument to determine the quality of the image (0-100). And lastly it is good practice to
+                destroy the image to free up memory.
+              </p>
+
+              <br /><br />
+
+              <p>
+                Now let us look the code for handling the ajax requests from the client side:
+              </p>
+
+              <br /><br />
+
+              <div className="codeBlock">
+                <pre>
+{`
+  <?php
+  session_start();
+
+              //.................GENERATE..................
+
+  //GENERATE FUNCTION
+  function generateCaptchaSession($name){
+
+      //assign variables
+      $result = 0;
+      //delete previous session
+      if(isset($_SESSION[$name]) || empty($_SESSION[$name])){
+          unset($_SESSION[$name]);
+      }
+
+      //session check
+          if(!isset($_SESSION[$name])){
+
+              //create session
+              $_SESSION[$name] = rand(1000,9999);
+
+              //re-assign $result variable
+              $result = 1;
+          }
+
+      echo $result;
+  }
+
+
+  //TASK CHECK.. createCapthcaSession
+  if(isset($_GET['task']) && $_GET['task'] == 'createCapthcaSession'){
+
+      //check name
+      if(isset($_GET['name']) && !empty($_GET['name'])){
+
+          //assing more variables
+          $name = $_GET['name'];
+
+          //generate
+          generateCaptchaSession($name);
+      }
+
+  }
+
+              //.................CHECK..................
+
+  //CHECK FUNCTION
+  function checkCaptchaSession($userCaptchaInput, $name){
+      if($userCaptchaInput == $_SESSION[$name]){
+          echo 1;
+      }else{
+          echo 0;
+      }
+  }
+
+  //TASK CHECK.. checkCaptchaSession
+  if(isset($_GET['task']) && $_GET['task'] == 'checkCaptchaSession'){
+
+      //data check
+      if(isset($_GET['userInput']) && !empty($_GET['userInput'])){
+
+          if(isset($_GET['name']) && !empty($_GET['name'])){
+
+              //assign variables
+              $userInput = $_GET['userInput'];
+              $name = $_GET['name'];
+
+              //pass data to function
+              checkCaptchaSession($userInput, $name);
+
+          }
+
+      }
+  }
+  ?>
+  `}
+                </pre>
+              </div>
+
+              <br /><br />
+
+              <p>
+                Again we can see first the session_start() {`function`} is called. When we receive a get request it is checked for a
+                value called task. This is how we determine what action to occur. The first action or {`function`} is the generate
+                {`function`} which is called when the task is createCaptchaSession. First we check if there is a session variable
+                with the name that was passed from the client side (‘captcha’). If there is we unset it to remove any previous
+                value that it had. This is important to ensure that old data is not kept. The unset() {`function`} destroys the
+                specified values. It is important to not mix this up with session_unset() because session_unset() will free
+                all session variables that are registered. After we have done our checks and unset the session variable we
+                now create a new session variable with the value of a random four digit number. This is now our session value
+                that was used when creating the image. Lastly a result value is echoed out so that the client side can
+                determine whether the session data was created successfully.
+              </p>
+
+              <br /><br />
+
+              <p>
+                Finally, let’s look at how the session data is checked to whether the user inputted data matches the session data
+                i.e. the number in the image. This is a simple process where the userInput passed from the client side is checked
+                with a simple selection statement and returns a 0 for no and 1 for yes which is then used by the client side to
+                determine whether to allow the user to continue.
+              </p>
+
+              <br /><br />
+
+              <div className="portfolio_block_image_summary_wrapper">
+                <img src="../../../resources/images/projects/captcha/checkBtnInputCorrectNumber.png" className="portfolio_block_image_summary" alt="capthca wrong input image"/>
+              </div>
+            </div>
+          </div>
+      </div>
+    )
+  }
+}

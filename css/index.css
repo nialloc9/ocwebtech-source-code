@@ -1,0 +1,147 @@
+.index_main_body{
+    font-size: 20px;
+    background-color: #fffff;
+    height: 100%;
+    width: 100%;
+    background-size: cover; /* Cover will cover the whole page without a spot missing. If we use contain and make the page smaller it will create new pictures as we shrink the page. */
+    margin-bottom: 50px;
+}
+
+.block1_wrapper{
+    margin: 0;
+    background-color: #80c6fe;
+    min-height: 700px;
+    -webkit-transform: skewX(-5deg);
+    -moz-transform: skewY(-5deg);
+    -ms-transform: skewY(-5deg);
+    -o-transform: skewY(-5deg);
+    transform: skewY(-5deg);
+}
+
+.block1_col1{
+    margin-top: 10px;
+    color: white;
+    font-weight: bold;
+    font-size: 50px
+}
+
+.index_title{
+    color: #fff;
+    float: left;
+    font-size: 50px;
+}
+
+.logo_image{
+    height: 300px;
+    width: 300px;
+    -webkit-transform: skewY(5deg);
+    -moz-transform: skewY(5deg);
+    -ms-transform: skewY(5deg);
+    -o-transform: skewY(5deg);
+    transform: skewY(5deg);
+}
+
+.block2_wrapper{
+    margin-top: 100px;
+    min-height: 500px;
+}
+
+.block2_main_body{
+    margin-left: 10px;
+    margin-top: 150px;
+    width: 100%;
+}
+
+.block2_main_body_text{
+    color: #0370c9;
+    font-size: 50px;
+}
+
+.block3_wrapper{
+    margin-top: 84px;
+    background-color: #80c6fe;
+    -webkit-transform: skewX(-5deg);
+    -moz-transform: skewY(-5deg);
+    -ms-transform: skewY(-5deg);
+    -o-transform: skewY(-5deg);
+    transform: skewY(-5deg);
+}
+
+.block3_main_area_wrapper{
+    margin-left: 30px;
+    margin-top: 80px;
+    margin-bottom: 80px;
+    margin-right: 20px;
+}
+
+.block3_main_area_title{
+    margin-left: 0px;
+    color: white;
+    font-weight: bold;
+    font-size: 50px;
+    margin-bottom: 20px;
+    float: left;
+    font-size: 45px;
+}
+
+.block4_wrapper{
+    margin-top: 100px;
+    min-height: 500px;
+}
+
+.block4_main_area_title{
+    font-size: 50px;
+    color: #0370c9;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.block4_main_area_text_about_me{
+    font-size: 20px;
+    color: #0370c9;
+}
+
+
+.logo_images{
+    height: 80px;
+    width: 80px;
+    margin: 10px;
+}
+
+.logo_images_wrapper{
+    display: inline-block;
+}
+
+.logo_images:hover{
+    width:82px;
+    height: 82px;
+    opacity: 0.5;
+    transition: 0.5;
+}
+
+.block5_wrapper{
+    margin-top: 100px;
+}
+
+.block5_main_area_title{
+    font-size: 50px;
+    color: #0370c9;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.portfolio_image_wrapper{
+    display: inline-block;
+}
+
+.portfolio_image{
+    height: 400px;
+    width: 400px;
+    margin: 10px;
+}
+
+.portfolio_image:hover{
+    width:450px;
+    height: 450px;
+    transition: 0.5s ease;
+}

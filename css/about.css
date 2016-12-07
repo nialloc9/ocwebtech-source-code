@@ -1,0 +1,30 @@
+.about_main_block{
+    margin-left: 100px;
+    margin-right: 100px;
+    margin-bottom: 100px;
+}
+
+.about_title{
+    margin-bottom: 50px;
+}
+
+.about_block1_image{
+    max-height: 800px;
+    max-width: 400px;
+    margin-bottom: 10px;
+}
+
+.about_block1{
+    ;
+    /* Below we can center everything.  */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+}
+
+#lego_image{
+    max-height: 100px;
+    max-width: 200px;
+}
