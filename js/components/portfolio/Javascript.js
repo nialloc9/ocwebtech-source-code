@@ -6,6 +6,7 @@ import Summary from './javascriptComp/Summary'
 import Captcha from './javascriptComp/Captcha'
 import InputColorChange from './javascriptComp/InputColorChange'
 import ListMaker from './javascriptComp/ListMaker'
+import ShouldIInvest from './javascriptComp/ShouldIInvest'
 export default class Javascript extends React.Component{
 
   constructor(){
@@ -20,7 +21,8 @@ export default class Javascript extends React.Component{
       "Summary",
       "Captcha Generator",
       "Prototypal inheritance Input Color Change",
-      "JS Listmaker Module"
+      "JS Listmaker Module",
+      "Should I Invest App"
     ]
 
     const determineComp = (text)=>{
@@ -46,6 +48,9 @@ export default class Javascript extends React.Component{
       case "JS Listmaker Module":
         component=<ListMaker />
         break;
+      case "Should I Invest App":
+        component=<ShouldIInvest />
+      break;
       default:
         component=<Summary />
     }

@@ -17,8 +17,6 @@ import ThingsILike from './pages/ThingsILike'
 //entry point
 const app = document.getElementById('app')
 
-//TODO delete scrollbar
-//TODO add autoplay to video
 ReactDOM.render(
    <Provider store={store}>
       <Router history={hashHistory}>
